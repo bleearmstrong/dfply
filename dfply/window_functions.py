@@ -198,3 +198,8 @@ def percent_rank(series, ascending=True):
         return 0
     percents = (series.rank(method='min', ascending=ascending) - 1) / (series.size - 1)
     return percents
+
+
+@make_symbolic
+def cume_dist(series):
+    return series.rank(method='max') / series.notnull().sum()
